@@ -93,7 +93,7 @@ class PDFGenerator:
             "InfoKecil", fontSize=8.5, leading=12, textColor=colors.HexColor("#333333"),
         ))
         self.styles.add(ParagraphStyle(
-            "Isi", fontSize=10, alignment=TA_JUSTIFY, leading=14, spaceAfter=10,
+            "Isi", fontSize=10, alignment=TA_JUSTIFY, leading=14, spaceAfter=7,
         ))
         self.styles.add(ParagraphStyle(
             "SubJudul", fontSize=13, textColor=HIJAU_TUA,
@@ -135,15 +135,15 @@ class PDFGenerator:
         story = []
         story += self._blok_kop_surat()
         story.append(self._garis_pembatas())
-        story.append(Spacer(1, 8))
+        story.append(Spacer(1, 6))
         story += self._blok_judul_meta()
         story.append(Paragraph(self.laporan.paragraf_pembuka(), self.styles["Isi"]))
         story.append(self._tabel_transaksi())
-        story.append(Spacer(1, 14))
+        story.append(Spacer(1, 10))
         story += self._blok_ringkasan()
-        story.append(Spacer(1, 10))
+        story.append(Spacer(1, 6))
         story.append(self._gambar_grafik())
-        story.append(Spacer(1, 10))
+        story.append(Spacer(1, 6))
         story.append(Paragraph(self.laporan.paragraf_penutup(), self.styles["Isi"]))
         story += self._blok_tanda_tangan()
         story += self._blok_qrcode()
@@ -410,7 +410,7 @@ class PDFGenerator:
             self.laporan.ringkasan["total_pengeluaran"],
             tmp.name,
         )
-        img = Image(tmp.name, width=15 * cm, height=8.6 * cm)
+        img = Image(tmp.name, width=13.5 * cm, height=7.5 * cm)
         img.hAlign = "CENTER"
         return img
 
